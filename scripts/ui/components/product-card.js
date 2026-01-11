@@ -1,6 +1,9 @@
 // scripts/ui/components/product-card.js
 import { createButton } from "./buttons.js";
 
+const CART_KEY = "cartItems";
+const FAV_KEY = "favoriteItems";
+
 export function createProductCard(product = {}) {
   const {
     id = "",
@@ -48,6 +51,7 @@ export function createProductCard(product = {}) {
   favorite.className = "product-card__favorite";
   favorite.type = "button";
   favorite.setAttribute("aria-label", "В избранное");
+  favorite.setAttribute("aria-pressed", "false");
 
   const favoriteIcon = document.createElement("img");
   favoriteIcon.className = "product-card__favorite-icon";
@@ -100,10 +104,7 @@ export function createProductCard(product = {}) {
   });
 
   body.append(info, actions);
-
   card.append(imgWrap, body);
-
-  const STORAGE_KEY = "cartItems";
 
   function resolveCover() {
     if (normalizedImages.length) return normalizedImages[0];
@@ -112,7 +113,7 @@ export function createProductCard(product = {}) {
 
   // Читаем корзину из localStorage.
   function readCart() {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(CART_KEY);
     let items = [];
     try {
       const parsed = JSON.parse(raw || "[]");
@@ -125,7 +126,7 @@ export function createProductCard(product = {}) {
 
   // Записываем корзину и уведомляем слушателей.
   function writeCart(items) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    localStorage.setItem(CART_KEY, JSON.stringify(items));
     window.dispatchEvent(new Event("cart:change"));
   }
 
@@ -204,6 +205,40 @@ export function createProductCard(product = {}) {
     qtyControl.append(minus, count, plus);
     actions.append(qtyControl);
   }
+
+  function readFavorites() {
+    const raw = localStorage.getItem(FAV_KEY);
+    try {
+      const parsed = JSON.parse(raw || "[]");
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function writeFavorites(items) {
+    localStorage.setItem(FAV_KEY, JSON.stringify(items));
+    window.dispatchEvent(new Event("favorites:change"));
+  }
+
+  function updateFavoriteState(isActive) {
+    favorite.classList.toggle("product-card__favorite--active", isActive);
+    favorite.setAttribute("aria-pressed", String(isActive));
+    favoriteIcon.src = isActive ? "assets/icons/heart1.svg" : "assets/icons/heart.svg";
+  }
+
+  function toggleFavorite() {
+    if (!id) return;
+    const items = readFavorites();
+    const index = items.indexOf(id);
+    if (index >= 0) items.splice(index, 1);
+    else items.push(id);
+    writeFavorites(items);
+    updateFavoriteState(items.includes(id));
+  }
+
+  updateFavoriteState(readFavorites().includes(id));
+  favorite.addEventListener("click", toggleFavorite);
 
   renderActions();
   window.addEventListener("cart:change", renderActions);

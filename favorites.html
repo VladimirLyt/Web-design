@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Личный кабинет</title>
+  <title>Избранное</title>
 
-  <link rel="stylesheet" href="styles/pages/account.css" />
+  <link rel="stylesheet" href="styles/pages/favorites.css" />
   <link rel="stylesheet" href="styles/components/header.css" />
+  <link rel="stylesheet" href="styles/components/product-card.css" />
   <link rel="stylesheet" href="styles/components/buttons.css" />
 </head>
 
@@ -25,23 +26,12 @@
     </div>
   </header>
 
-  <main class="account">
-    <header class="account__header">
-      <div class="account__head-row">
-        <div>
-          <h1 class="account__title">Личный кабинет</h1>
-          <p class="account__subtitle">Ваши заказы из этого браузера.</p>
-        </div>
-        <button class="button button--primary account__clear" type="button" id="clearOrders">
-          Очистить историю
-        </button>
-      </div>
-    </header>
-
-    <section class="account__orders" id="ordersList"></section>
+  <main class="favorites">
+    <h1 class="favorites__title">Избранное</h1>
+    <div class="favorites__grid" id="favoritesGrid"></div>
   </main>
 
+  <script type="module" src="scripts/ui/favorites.js"></script>
   <script type="module" src="scripts/ui/cart-badge.js"></script>
-  <script type="module" src="scripts/ui/account.js"></script>
 </body>
 </html>
