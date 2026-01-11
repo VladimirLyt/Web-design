@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Админка</title>
+
+  <link rel="stylesheet" href="styles/pages/admin.css" />
+  <link rel="stylesheet" href="styles/components/buttons.css" />
+</head>
+
+<body class="admin">
+  <main class="admin__panel">
+    <header class="admin__header">
+      <h1 class="admin__title">Публикация товара</h1>
+      <p class="admin__subtitle">Форма отправляет данные в JSON на сервере.</p>
+    </header>
+
+    <form class="admin__form" id="productForm">
+      <label class="admin__field">
+        <span class="admin__label">ID</span>
+        <input class="admin__input" name="id" type="text" placeholder="p003" required />
+      </label>
+
+      <label class="admin__field">
+        <span class="admin__label">Название</span>
+        <input class="admin__input" name="title" type="text" placeholder="Новый товар" required />
+      </label>
+
+      <label class="admin__field">
+        <span class="admin__label">Цена</span>
+        <input class="admin__input" name="price" type="number" min="0" step="1" placeholder="1990" required />
+      </label>
+
+      <div class="admin__field">
+        <span class="admin__label">Загрузка картинок</span>
+        <div class="admin__dropzone" id="imageDropzone">
+          Перетащи файлы сюда или нажми, чтобы выбрать
+          <input class="admin__file" id="imageInput" type="file" accept="image/*" multiple />
+        </div>
+        <div class="admin__previews" id="imagePreviews"></div>
+      </div>
+
+      <div class="admin__hint">
+        Картинки положи в папку <strong>assets/images/products</strong>, затем укажи путь.
+      </div>
+
+      <div class="admin__actions">
+        <button class="button button--primary" type="submit">Опубликовать</button>
+      </div>
+    </form>
+
+    <section class="admin__preview">
+      <h2 class="admin__preview-title">Текущие товары</h2>
+      <div class="admin__list" id="productsList"></div>
+    </section>
+  </main>
+
+  <script type="module" src="scripts/ui/admin.js"></script>
+</body>
+</html>

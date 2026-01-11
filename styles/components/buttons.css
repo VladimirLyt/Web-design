@@ -1,0 +1,13 @@
+/* styles/components/buttons.css */
+
+.button {
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: #ECECEC;
+  cursor: pointer;
+  font: inherit;
+  font-size: 16px;
+  font-family: "Manrope", sans-serif;
+  font-weight: bold;
+  color: #424242;
+}

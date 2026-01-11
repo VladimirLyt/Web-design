@@ -1,0 +1,50 @@
+/* styles/pages/catalog.css */
+
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap");
+
+:root {
+  --page-bg: #f2f3f5;
+  --surface: #ffffff;
+  --text-primary: #1a1a1a;
+  --accent: #0c64f0;
+  --radius-lg: 20px;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text-primary);
+  font-family: "Manrope", "Segoe UI", sans-serif;
+}
+
+.catalog {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.catalog__title {
+  margin: 0 0 16px;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.catalog__grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 2fr));
+  align-items: stretch;
+}
+
+@media (min-width: 768px) {
+  .catalog__grid {
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .catalog__grid {
+    grid-template-columns: repeat(4, minmax(260px, 1fr));
+  }
+}

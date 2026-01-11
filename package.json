@@ -1,0 +1,10 @@
+{
+  "name": "online-store",
+  "private": true,
+  "type": "commonjs",
+  "dependencies": {
+    "@vercel/blob": "^0.21.0",
+    "@vercel/kv": "^2.0.0",
+    "busboy": "^1.6.0"
+  }
+}

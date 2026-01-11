@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Корзина</title>
+
+  <link rel="stylesheet" href="styles/pages/cart.css" />
+  <link rel="stylesheet" href="styles/components/header.css" />
+  <link rel="stylesheet" href="styles/components/buttons.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__title" href="index.html">Онлайн-магазин</a>
+      <a class="site-header__cart" href="cart.html">
+        Корзина
+        <span class="site-header__badge" data-cart-count>0</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="cart">
+    <div class="cart__header">
+      <h1 class="cart__title">Корзина</h1>
+      <span class="cart__badge" data-cart-count>0</span>
+    </div>
+
+    <div class="cart__layout">
+      <section class="cart__items" id="cartItems"></section>
+
+      <aside class="cart__summary">
+        <div class="summary-card">
+          <h2 class="summary-card__title">Оформление</h2>
+          <div class="summary-card__row">
+            <span>Товары</span>
+            <span id="cartSubtotal">0 ₽</span>
+          </div>
+          <div class="summary-card__row">
+            <span>Скидка</span>
+            <span id="cartDiscount">0 ₽</span>
+          </div>
+          <div class="summary-card__divider"></div>
+          <div class="summary-card__row summary-card__total">
+            <span>Итого</span>
+            <span id="cartTotal">0 ₽</span>
+          </div>
+          <button class="summary-card__pay" type="button">Оплатить</button>
+        </div>
+
+        <div class="promo-card">
+          <h3 class="promo-card__title">Промокод</h3>
+          <input class="promo-card__input" type="text" placeholder="Код" />
+          <button class="promo-card__apply" type="button">Применить</button>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script type="module" src="scripts/ui/cart-badge.js"></script>
+  <script type="module" src="scripts/ui/cart.js"></script>
+</body>
+</html>
