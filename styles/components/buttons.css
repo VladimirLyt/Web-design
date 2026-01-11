@@ -11,6 +11,7 @@
   font-weight: bold;
   color: #424242;
   border: none;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
 .button--primary {
@@ -21,4 +22,12 @@
 .button--accent {
   background: var(--accent);
   color: #fff;
+}
+
+.button--primary:hover {
+  background: #dedede;
+}
+
+.button--accent:hover {
+  background: #0956d6;
 }
