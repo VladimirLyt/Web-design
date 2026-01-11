@@ -31,6 +31,14 @@ body {
   margin-bottom: 16px;
 }
 
+.account__head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
 .account__title {
   margin: 0 0 6px;
   font-size: 24px;
@@ -44,6 +52,11 @@ body {
 .account__orders {
   display: grid;
   gap: 16px;
+}
+
+.account__clear {
+  padding: 8px 14px;
+  border-radius: 12px;
 }
 
 .order-card {

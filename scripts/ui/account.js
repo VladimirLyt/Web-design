@@ -1,5 +1,6 @@
 // scripts/ui/account.js
 const list = document.getElementById("ordersList");
+const clearButton = document.getElementById("clearOrders");
 const CLIENT_KEY = "clientId";
 
 function getClientId() {
@@ -68,3 +69,15 @@ loadOrders().then((orders) => {
   }
   orders.forEach((order) => list.appendChild(renderOrder(order)));
 });
+
+async function clearOrders() {
+  await fetch(`/api/orders?clientId=${encodeURIComponent(getClientId())}`, {
+    method: "DELETE",
+  });
+  list.innerHTML = "";
+  renderEmpty();
+}
+
+if (clearButton) {
+  clearButton.addEventListener("click", clearOrders);
+}

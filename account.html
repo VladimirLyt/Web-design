@@ -26,8 +26,13 @@
 
   <main class="account">
     <header class="account__header">
-      <h1 class="account__title">Личный кабинет</h1>
-      <p class="account__subtitle">Ваши заказы</p>
+      <div class="account__head-row">
+        <div>
+          <h1 class="account__title">Личный кабинет</h1>
+          <p class="account__subtitle">Ваши заказы из этого браузера.</p>
+        </div>
+        <button class="button account__clear" type="button" id="clearOrders">Очистить историю</button>
+      </div>
     </header>
 
     <section class="account__orders" id="ordersList"></section>

@@ -39,6 +39,21 @@ module.exports = async (req, res) => {
     }
   }
 
+  if (req.method === "DELETE") {
+    const clientId = req.query?.clientId;
+    if (!clientId) {
+      res.status(400).json({ error: "clientId обязателен" });
+      return;
+    }
+
+    const items = (await kv.get(KEY)) || [];
+    const list = Array.isArray(items) ? items : [];
+    const filtered = list.filter((order) => order.clientId !== clientId);
+    await kv.set(KEY, filtered);
+    res.status(200).json({ ok: true });
+    return;
+  }
+
   res.status(405).json({ error: "Метод не поддержан" });
 };
 
