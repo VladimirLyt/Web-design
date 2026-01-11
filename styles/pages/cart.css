@@ -62,8 +62,8 @@ body {
 
 .cart-item {
   background: var(--surface);
-  border-radius: 18px;
-  padding: 16px;
+  border-radius: 16px;
+  padding: 8px;
   display: grid;
   grid-template-columns: 120px 1fr auto;
   gap: 16px;
@@ -73,8 +73,8 @@ body {
 
 .cart-item__media {
   width: 120px;
-  height: 120px;
-  border-radius: 14px;
+  height: 150px;
+  border-radius: 8px;
   background: #e6effa;
   display: flex;
   align-items: center;
@@ -217,6 +217,7 @@ body {
   background: #f1f1f1;
   margin-bottom: 12px;
   font: inherit;
+  box-sizing: border-box;
 }
 
 .promo-card__apply {
@@ -228,6 +229,7 @@ body {
   color: #333;
   font-weight: 600;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 @media (min-width: 960px) {

@@ -8,16 +8,20 @@
   <link rel="stylesheet" href="styles/pages/cart.css" />
   <link rel="stylesheet" href="styles/components/header.css" />
   <link rel="stylesheet" href="styles/components/buttons.css" />
+  <link rel="stylesheet" href="styles/components/alert.css" />
 </head>
 
 <body>
   <header class="site-header">
     <div class="site-header__inner">
       <a class="site-header__title" href="index.html">Онлайн-магазин</a>
-      <a class="site-header__cart" href="cart.html">
-        Корзина
-        <span class="site-header__badge" data-cart-count>0</span>
-      </a>
+      <div class="site-header__actions">
+        <a class="site-header__link" href="account.html">Кабинет</a>
+        <a class="site-header__cart" href="cart.html">
+          Корзина
+          <span class="site-header__badge" data-cart-count>0</span>
+        </a>
+      </div>
     </div>
   </header>
 
@@ -57,6 +61,8 @@
       </aside>
     </div>
   </main>
+
+  <div class="toast" id="promoToast" role="status" aria-live="polite">Промокод применен</div>
 
   <script type="module" src="scripts/ui/cart-badge.js"></script>
   <script type="module" src="scripts/ui/cart.js"></script>

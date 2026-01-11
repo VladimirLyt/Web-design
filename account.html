@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Личный кабинет</title>
 
-  <link rel="stylesheet" href="styles/pages/catalog.css" />
+  <link rel="stylesheet" href="styles/pages/account.css" />
   <link rel="stylesheet" href="styles/components/header.css" />
-  <link rel="stylesheet" href="styles/components/product-card.css" />
   <link rel="stylesheet" href="styles/components/buttons.css" />
 </head>
 
@@ -24,13 +24,16 @@
     </div>
   </header>
 
-  <main class="catalog">
-    <h1 class="catalog__title">Каталог</h1>
+  <main class="account">
+    <header class="account__header">
+      <h1 class="account__title">Личный кабинет</h1>
+      <p class="account__subtitle">Ваши заказы из этого браузера.</p>
+    </header>
 
-    <div class="catalog__grid" id="catalogGrid"></div>
+    <section class="account__orders" id="ordersList"></section>
   </main>
 
-  <script type="module" src="scripts/ui/main.js"></script>
   <script type="module" src="scripts/ui/cart-badge.js"></script>
+  <script type="module" src="scripts/ui/account.js"></script>
 </body>
 </html>

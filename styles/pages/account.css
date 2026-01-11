@@ -1,0 +1,78 @@
+/* styles/pages/account.css */
+
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap");
+
+:root {
+  --page-bg: #f2f3f5;
+  --surface: #ffffff;
+  --text-primary: #1a1a1a;
+  --accent: #0c64f0;
+  --muted: #8a8a8a;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text-primary);
+  font-family: "Manrope", "Segoe UI", sans-serif;
+}
+
+.account {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.account__header {
+  background: var(--surface);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 12px 30px rgba(18, 24, 38, 0.06);
+  margin-bottom: 16px;
+}
+
+.account__title {
+  margin: 0 0 6px;
+  font-size: 24px;
+}
+
+.account__subtitle {
+  margin: 0;
+  color: var(--muted);
+}
+
+.account__orders {
+  display: grid;
+  gap: 16px;
+}
+
+.order-card {
+  background: var(--surface);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 12px 30px rgba(18, 24, 38, 0.06);
+  display: grid;
+  gap: 10px;
+}
+
+.order-card__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.order-card__items {
+  display: grid;
+  gap: 8px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  color: #444;
+}
+
+.order-card__total {
+  font-weight: 700;
+}

@@ -4,6 +4,17 @@ const itemsRoot = document.getElementById("cartItems");
 const subtotalEl = document.getElementById("cartSubtotal");
 const discountEl = document.getElementById("cartDiscount");
 const totalEl = document.getElementById("cartTotal");
+const promoInput = document.querySelector(".promo-card__input");
+const promoApply = document.querySelector(".promo-card__apply");
+const payButton = document.querySelector(".summary-card__pay");
+import { showToast } from "./alert.js";
+const PROMO_KEY = "cartPromo";
+const PROMOS = {
+  PROMO10: 0.1,
+  SALE20: 0.2,
+  VIP5: 0.05,
+};
+const CLIENT_KEY = "clientId";
 
 // Чтение корзины из localStorage.
 function readCart() {
@@ -15,6 +26,35 @@ function readCart() {
   } catch {
     return [];
   }
+}
+
+function getClientId() {
+  let id = localStorage.getItem(CLIENT_KEY);
+  if (!id) {
+    id = `client-${Math.random().toString(36).slice(2, 10)}`;
+    localStorage.setItem(CLIENT_KEY, id);
+  }
+  return id;
+}
+
+async function placeOrder() {
+  const items = readCart();
+  if (!items.length) return;
+  const totals = calcTotals(items);
+
+  await fetch("/api/orders", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      clientId: getClientId(),
+      items,
+      total: totals.total,
+    }),
+  });
+
+  localStorage.removeItem("cartItems");
+  localStorage.removeItem(PROMO_KEY);
+  render();
 }
 
 // Запись корзины и уведомление UI.
@@ -30,7 +70,7 @@ function formatPrice(value) {
 // Пересчет итогов корзины.
 function calcTotals(items) {
   const subtotal = items.reduce((sum, item) => sum + item.price * (item.qty || 1), 0);
-  const discount = 0;
+  const discount = Math.round(subtotal * getPromoDiscount());
   const total = subtotal - discount;
   return { subtotal, discount, total };
 }
@@ -145,3 +185,33 @@ function render() {
 
 render();
 window.addEventListener("cart:change", render);
+
+function getPromoDiscount() {
+  const stored = localStorage.getItem(PROMO_KEY);
+  return PROMOS[stored] || 0;
+}
+
+function applyPromo() {
+  const value = (promoInput?.value || "").trim().toUpperCase();
+  if (PROMOS[value]) {
+    localStorage.setItem(PROMO_KEY, value);
+    showToast("Промокод применен");
+  } else {
+    localStorage.removeItem(PROMO_KEY);
+  }
+  render();
+}
+
+if (promoApply && promoInput) {
+  promoApply.addEventListener("click", applyPromo);
+  promoInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      applyPromo();
+    }
+  });
+}
+
+if (payButton) {
+  payButton.addEventListener("click", placeOrder);
+}

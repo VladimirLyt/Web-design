@@ -16,6 +16,19 @@
   gap: 16px;
 }
 
+.site-header__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.site-header__link {
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
 .site-header__title {
   text-decoration: none;
   color: var(--text-primary);
