@@ -42,3 +42,15 @@
 .button--accent:hover {
   background: #0956d6;
 }
+
+.button:disabled:hover,
+.button:disabled {
+  background: #e6e6e6;
+  color: #9a9a9a;
+  cursor: not-allowed;
+}
+
+.button--accent:disabled:hover {
+  background: #9cb7ef;
+  color: #f3f6ff;
+}
