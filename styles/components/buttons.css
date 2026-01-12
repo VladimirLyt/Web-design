@@ -30,11 +30,6 @@
   cursor: not-allowed;
 }
 
-.button--accent:disabled {
-  background: #9cb7ef;
-  color: #f3f6ff;
-}
-
 .button--primary:hover {
   background: #dedede;
 }
@@ -50,7 +45,9 @@
   cursor: not-allowed;
 }
 
+.button--accent:disabled,
 .button--accent:disabled:hover {
   background: #9cb7ef;
   color: #f3f6ff;
+  cursor: not-allowed;
 }

@@ -82,8 +82,12 @@ function createItem(item) {
   const remove = document.createElement("button");
   remove.className = "cart-item__icon";
   remove.type = "button";
-  remove.textContent = "🗑";
   remove.setAttribute("aria-label", "Удалить");
+  const trashIcon = document.createElement("img");
+  trashIcon.className = "cart-item__icon-img";
+  trashIcon.src = "assets/icons/trash.svg";
+  trashIcon.alt = "";
+  remove.appendChild(trashIcon);
 
   const qty = document.createElement("div");
   qty.className = "cart-item__qty";
