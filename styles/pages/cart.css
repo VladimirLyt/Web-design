@@ -16,6 +16,7 @@ body {
   background: var(--page-bg);
   color: var(--text-primary);
   font-family: "Manrope", "Segoe UI", sans-serif;
+  touch-action: manipulation;
 }
 
 .cart {

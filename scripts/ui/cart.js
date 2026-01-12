@@ -182,6 +182,13 @@ function render() {
   subtotalEl.textContent = formatPrice(totals.subtotal);
   discountEl.textContent = formatPrice(totals.discount);
   totalEl.textContent = formatPrice(totals.total);
+
+  const hasItems = items.length > 0;
+  if (payButton) payButton.disabled = !hasItems;
+  if (promoApply && promoInput) {
+    const hasPromoText = promoInput.value.trim().length > 0;
+    promoApply.disabled = !hasItems || !hasPromoText;
+  }
 }
 
 render();
@@ -194,17 +201,15 @@ function getPromoDiscount() {
 
 function applyPromo() {
   const items = readCart();
-  if (!items.length) {
-    showToast("Добавьте товар");
-    return;
-  }
-
+  if (!items.length) return;
   const value = (promoInput?.value || "").trim().toUpperCase();
+  if (!value) return;
   if (PROMOS[value]) {
     localStorage.setItem(PROMO_KEY, value);
     showToast("Промокод применен");
   } else {
     localStorage.removeItem(PROMO_KEY);
+    showToast("Неверный промокод");
   }
   render();
 }
@@ -217,8 +222,14 @@ if (promoApply && promoInput) {
       applyPromo();
     }
   });
+  promoInput.addEventListener("input", render);
 }
 
 if (payButton) {
-  payButton.addEventListener("click", placeOrder);
+  payButton.addEventListener("click", async () => {
+    const items = readCart();
+    if (!items.length) return;
+    await placeOrder();
+    showToast("Заказ оформлен");
+  });
 }
