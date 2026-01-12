@@ -192,6 +192,12 @@ function getPromoDiscount() {
 }
 
 function applyPromo() {
+  const items = readCart();
+  if (!items.length) {
+    showToast("Добавьте товар");
+    return;
+  }
+
   const value = (promoInput?.value || "").trim().toUpperCase();
   if (PROMOS[value]) {
     localStorage.setItem(PROMO_KEY, value);
