@@ -1,4 +1,4 @@
-// scripts/ui/main.js
+// scripts/main.js
 import { renderProductGrid } from "./render.js";
 
 // Пытаемся получить товары с API, иначе показываем демо-данные локально.
@@ -20,7 +20,7 @@ async function loadProducts() {
           title: "Демо товар",
           price: 1990,
           image: "assets/images/placeholder.png",
-          images: ["assets/images/products/5eeaaccc-f4a0-4aa6-89ba-6595439eae50.png"],
+          images: ["assets/images/placeholder.png"],
         },
         {
           id: "demo-2",

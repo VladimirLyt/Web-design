@@ -1,4 +1,4 @@
-// scripts/ui/cart-badge.js
+// scripts/pages/cart-badge.js
 const STORAGE_KEY = "cartItems";
 const badges = document.querySelectorAll("[data-cart-count]");
 

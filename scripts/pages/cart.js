@@ -1,5 +1,10 @@
-// scripts/ui/cart.js
+// scripts/pages/cart.js
+import { showToast } from "../components/alert.js";
+
 const STORAGE_KEY = "cartItems";
+const PROMO_KEY = "cartPromo";
+const CLIENT_KEY = "clientId";
+
 const itemsRoot = document.getElementById("cartItems");
 const subtotalEl = document.getElementById("cartSubtotal");
 const discountEl = document.getElementById("cartDiscount");
@@ -7,16 +12,13 @@ const totalEl = document.getElementById("cartTotal");
 const promoInput = document.querySelector(".promo-card__input");
 const promoApply = document.querySelector(".promo-card__apply");
 const payButton = document.querySelector(".summary-card__pay");
-import { showToast } from "./alert.js";
-const PROMO_KEY = "cartPromo";
+
 const PROMOS = {
   PROMO10: 0.1,
   SALE20: 0.2,
   VIP5: 0.05,
 };
-const CLIENT_KEY = "clientId";
 
-// Чтение корзины из localStorage.
 function readCart() {
   const raw = localStorage.getItem(STORAGE_KEY);
   if (!raw) return [];
@@ -28,37 +30,6 @@ function readCart() {
   }
 }
 
-function getClientId() {
-  let id = localStorage.getItem(CLIENT_KEY);
-  if (!id) {
-    id = `client-${Math.random().toString(36).slice(2, 10)}`;
-    localStorage.setItem(CLIENT_KEY, id);
-  }
-  return id;
-}
-
-async function placeOrder() {
-  const items = readCart();
-  if (!items.length) return;
-  const totals = calcTotals(items);
-
-  await fetch("/api/orders", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      clientId: getClientId(),
-      items,
-      total: totals.total,
-    }),
-  });
-
-  localStorage.removeItem("cartItems");
-  localStorage.removeItem(PROMO_KEY);
-  window.dispatchEvent(new Event("cart:change"));
-  render();
-}
-
-// Запись корзины и уведомление UI.
 function writeCart(items) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
   window.dispatchEvent(new Event("cart:change"));
@@ -68,7 +39,6 @@ function formatPrice(value) {
   return `${value} ₽`;
 }
 
-// Пересчет итогов корзины.
 function calcTotals(items) {
   const subtotal = items.reduce((sum, item) => sum + item.price * (item.qty || 1), 0);
   const discount = Math.round(subtotal * getPromoDiscount());
@@ -80,7 +50,6 @@ function renderEmpty() {
   itemsRoot.innerHTML = "<p>Корзина пуста.</p>";
 }
 
-// Рендер одной позиции корзины.
 function createItem(item) {
   const card = document.createElement("article");
   card.className = "cart-item";
@@ -167,7 +136,6 @@ function createItem(item) {
   return card;
 }
 
-// Полная перерисовка списка и итогов.
 function render() {
   const items = readCart();
   itemsRoot.innerHTML = "";
@@ -191,9 +159,6 @@ function render() {
   }
 }
 
-render();
-window.addEventListener("cart:change", render);
-
 function getPromoDiscount() {
   const stored = localStorage.getItem(PROMO_KEY);
   return PROMOS[stored] || 0;
@@ -211,6 +176,36 @@ function applyPromo() {
     localStorage.removeItem(PROMO_KEY);
     showToast("Неверный промокод");
   }
+  render();
+}
+
+function getClientId() {
+  let id = localStorage.getItem(CLIENT_KEY);
+  if (!id) {
+    id = `client-${Math.random().toString(36).slice(2, 10)}`;
+    localStorage.setItem(CLIENT_KEY, id);
+  }
+  return id;
+}
+
+async function placeOrder() {
+  const items = readCart();
+  if (!items.length) return;
+  const totals = calcTotals(items);
+
+  await fetch("/api/orders", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      clientId: getClientId(),
+      items,
+      total: totals.total,
+    }),
+  });
+
+  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(PROMO_KEY);
+  window.dispatchEvent(new Event("cart:change"));
   render();
 }
 
@@ -233,3 +228,6 @@ if (payButton) {
     showToast("Заказ оформлен");
   });
 }
+
+render();
+window.addEventListener("cart:change", render);

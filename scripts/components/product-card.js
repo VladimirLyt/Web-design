@@ -1,4 +1,4 @@
-// scripts/ui/components/product-card.js
+// scripts/components/product-card.js
 import { createButton } from "./buttons.js";
 
 const CART_KEY = "cartItems";

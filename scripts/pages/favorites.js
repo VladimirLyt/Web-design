@@ -1,5 +1,5 @@
-// scripts/ui/favorites.js
-import { renderEmpty, renderProductGrid } from "./render.js";
+// scripts/pages/favorites.js
+import { renderEmpty, renderProductGrid } from "../render.js";
 
 const FAV_KEY = "favoriteItems";
 const grid = document.getElementById("favoritesGrid");

@@ -1,5 +1,5 @@
-// scripts/ui/admin.js
-import { createButton } from "./components/buttons.js";
+// scripts/pages/admin.js
+import { createButton } from "../components/buttons.js";
 
 const form = document.getElementById("productForm");
 const list = document.getElementById("productsList");
@@ -68,7 +68,6 @@ function normalizeProduct(formData) {
   const images = uploadedImages.slice();
   const image = images[0] || "";
 
-  // Приводим данные формы к ожидаемому формату.
   return {
     id,
     title,
@@ -131,7 +130,6 @@ if (form) {
 form?.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  // Отправляем новый товар в API.
   const data = normalizeProduct(new FormData(form));
   if (!data.id || !data.title) return;
 

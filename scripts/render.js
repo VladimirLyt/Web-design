@@ -1,4 +1,4 @@
-// scripts/ui/render.js
+// scripts/render.js
 import { createProductCard } from "./components/product-card.js";
 
 export function clear(node) {

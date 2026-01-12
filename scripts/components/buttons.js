@@ -1,4 +1,4 @@
-// scripts/ui/components/buttons.js
+// scripts/components/buttons.js
 export function createButton({ label = "Кнопка", variant = "primary", type = "button" } = {}) {
   const btn = document.createElement("button");
   const variantClass = variant ? `button--${variant}` : "";

@@ -1,4 +1,4 @@
-// scripts/ui/account.js
+// scripts/pages/account.js
 const list = document.getElementById("ordersList");
 const clearButton = document.getElementById("clearOrders");
 const CLIENT_KEY = "clientId";

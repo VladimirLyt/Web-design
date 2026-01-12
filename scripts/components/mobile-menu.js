@@ -1,4 +1,4 @@
-// scripts/ui/mobile-menu.js
+// scripts/components/mobile-menu.js
 const toggle = document.querySelector("[data-menu-toggle]");
 const menu = document.querySelector("[data-menu]");
 

@@ -1,4 +1,4 @@
-// scripts/ui/alert.js
+// scripts/components/alert.js
 let toastTimer;
 
 export function showToast(message) {
