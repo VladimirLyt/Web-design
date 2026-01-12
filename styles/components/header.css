@@ -72,16 +72,13 @@
   background: #fff;
   align-items: center;
   justify-content: center;
-  gap: 4px;
   cursor: pointer;
 }
 
-.site-header__burger span {
-  width: 18px;
-  height: 2px;
-  background: #111;
+.site-header__burger img {
+  width: 20px;
+  height: 20px;
   display: block;
-  border-radius: 999px;
 }
 
 @media (max-width: 640px) {
