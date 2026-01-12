@@ -68,7 +68,6 @@ body {
   grid-template-columns: 120px 1fr auto;
   gap: 16px;
   align-items: center;
-  box-shadow: 0 12px 30px rgba(18, 24, 38, 0.06);
 }
 
 .cart-item__media {
@@ -166,7 +165,6 @@ body {
   background: var(--surface);
   border-radius: 18px;
   padding: 16px;
-  box-shadow: 0 12px 30px rgba(18, 24, 38, 0.06);
 }
 
 .summary-card__title {

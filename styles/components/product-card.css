@@ -107,6 +107,20 @@
   text-align: center;
 }
 
+@media (max-width: 640px) {
+  .product-card__cta {
+    padding: 8px 12px;
+    border-radius: 14px;
+    font-size: 14px;
+  }
+
+  .product-card__qty {
+    padding: 8px 12px;
+    border-radius: 14px;
+    font-size: 14px;
+  }
+}
+
 .product-card__favorite {
   width: 24px;
   height: 24px;

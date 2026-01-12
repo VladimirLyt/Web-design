@@ -103,6 +103,31 @@ export function createProductCard(product = {}) {
     img.src = normalizedImages[0];
   });
 
+  let touchStartX = 0;
+  let touchIndex = 0;
+
+  imgWrap.addEventListener("touchstart", (event) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+    touchStartX = touch.clientX;
+    const active = dotItems.findIndex((dot) => dot.classList.contains("product-card__dot--active"));
+    touchIndex = active >= 0 ? active : 0;
+  }, { passive: true });
+
+  imgWrap.addEventListener("touchend", (event) => {
+    const touch = event.changedTouches[0];
+    if (!touch) return;
+    const deltaX = touch.clientX - touchStartX;
+    if (Math.abs(deltaX) < 25) return;
+
+    if (deltaX < 0) touchIndex += 1;
+    else touchIndex -= 1;
+
+    touchIndex = Math.max(0, Math.min(dotItems.length - 1, touchIndex));
+    setActiveDot(touchIndex);
+    img.src = normalizedImages[touchIndex] || normalizedImages[0];
+  });
+
   body.append(info, actions);
   card.append(imgWrap, body);
 

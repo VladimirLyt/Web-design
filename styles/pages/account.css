@@ -27,7 +27,6 @@ body {
   background: var(--surface);
   border-radius: 18px;
   padding: 16px;
-  box-shadow: 0 12px 30px rgba(18, 24, 38, 0.06);
   margin-bottom: 16px;
 }
 
@@ -63,7 +62,6 @@ body {
   background: var(--surface);
   border-radius: 18px;
   padding: 16px;
-  box-shadow: 0 12px 30px rgba(18, 24, 38, 0.06);
   display: grid;
   gap: 10px;
 }
