@@ -54,6 +54,7 @@ async function placeOrder() {
 
   localStorage.removeItem("cartItems");
   localStorage.removeItem(PROMO_KEY);
+  window.dispatchEvent(new Event("cart:change"));
   render();
 }
 

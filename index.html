@@ -15,7 +15,12 @@
   <header class="site-header">
     <div class="site-header__inner">
       <a class="site-header__title" href="index.html">Онлайн-магазин</a>
-      <div class="site-header__actions">
+      <button class="site-header__burger" type="button" aria-label="Меню" aria-expanded="false" data-menu-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="site-header__actions" data-menu>
         <a class="site-header__link" href="account.html">Кабинет</a>
         <a class="site-header__link" href="favorites.html">Избранное</a>
         <a class="site-header__cart" href="cart.html">
@@ -33,5 +38,6 @@
 
   <script type="module" src="scripts/ui/main.js"></script>
   <script type="module" src="scripts/ui/cart-badge.js"></script>
+  <script type="module" src="scripts/ui/mobile-menu.js"></script>
 </body>
 </html>
