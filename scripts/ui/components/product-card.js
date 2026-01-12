@@ -188,8 +188,9 @@ export function createProductCard(product = {}) {
     const qty = current?.qty || 0;
 
     if (qty <= 0) {
+      const isMobile = window.matchMedia("(max-width: 640px)").matches;
       const addToCartButton = createButton({
-        label: "Добавить в корзину",
+        label: isMobile ? "В корзину" : "Добавить в корзину",
         variant: "primary",
       });
       addToCartButton.classList.add("product-card__cta");

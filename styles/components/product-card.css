@@ -108,6 +108,14 @@
 }
 
 @media (max-width: 640px) {
+  .product-card__title {
+    font-size: 16px;
+  }
+
+  .product-card__price {
+    font-size: 22px;
+  }
+
   .product-card__cta {
     padding: 8px 12px;
     border-radius: 14px;

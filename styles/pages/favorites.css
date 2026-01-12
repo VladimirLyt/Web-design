@@ -42,6 +42,13 @@ body {
   }
 }
 
+@media (max-width: 640px) {
+  .favorites__grid {
+    gap: 12px;
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+  }
+}
+
 @media (min-width: 1200px) {
   .favorites__grid {
     grid-template-columns: repeat(4, minmax(260px, 1fr));
