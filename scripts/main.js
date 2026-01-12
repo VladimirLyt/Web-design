@@ -1,5 +1,6 @@
 // scripts/main.js
 import { renderProductGrid } from "./render.js";
+// Load products from API with local demo fallback when running locally.
 
 // Пытаемся получить товары с API, иначе показываем демо-данные локально.
 async function loadProducts() {

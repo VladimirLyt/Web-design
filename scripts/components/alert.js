@@ -1,4 +1,5 @@
 // scripts/components/alert.js
+// Показывает короткое всплывающее сообщение внизу экрана.
 let toastTimer;
 
 export function showToast(message) {

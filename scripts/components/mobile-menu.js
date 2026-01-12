@@ -1,4 +1,5 @@
 // scripts/components/mobile-menu.js
+// Управляет мобильным бургер-меню в хедере.
 const toggle = document.querySelector("[data-menu-toggle]");
 const menu = document.querySelector("[data-menu]");
 

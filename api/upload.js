@@ -9,12 +9,14 @@ module.exports = async (req, res) => {
   }
 
   try {
+    // Читаем один файл из multipart/form-data.
     const file = await readSingleFile(req);
     if (!file) {
       res.status(400).json({ error: "Файл не найден" });
       return;
     }
 
+    // Сохраняем файл в Vercel Blob и возвращаем публичный URL.
     const safeName = `${Date.now()}-${file.filename.replace(/[^a-zA-Z0-9._-]/g, "")}`;
     const blob = await put(`products/${safeName}`, file.buffer, {
       access: "public",
@@ -29,6 +31,7 @@ module.exports = async (req, res) => {
 };
 
 function readSingleFile(req) {
+  // Парсим multipart и возвращаем первый файл.
   return new Promise((resolve, reject) => {
     const bb = Busboy({ headers: req.headers });
     let resolved = false;

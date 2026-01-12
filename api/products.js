@@ -1,15 +1,18 @@
 const { kv } = require("@vercel/kv");
 
+// Ключ в KV для хранения списка товаров.
 const KEY = "products";
 
 module.exports = async (req, res) => {
   if (req.method === "GET") {
+    // Отдаем список товаров.
     const items = (await kv.get(KEY)) || [];
     res.status(200).json(Array.isArray(items) ? items : []);
     return;
   }
 
   if (req.method === "POST") {
+    // Создание или обновление товара по id.
     try {
       const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
       const data = normalizeProduct(body || {});
@@ -34,6 +37,7 @@ module.exports = async (req, res) => {
   }
 
   if (req.method === "DELETE") {
+    // Удаление товара по id.
     const id = req.query?.id;
     if (!id) {
       res.status(400).json({ error: "id обязателен" });
@@ -52,6 +56,7 @@ module.exports = async (req, res) => {
 };
 
 function normalizeProduct(payload = {}) {
+  // Нормализуем входной payload и приводим типы.
   const id = String(payload.id || "").trim();
   const title = String(payload.title || "").trim();
   const price = Number(payload.price);
