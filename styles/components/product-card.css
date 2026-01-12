@@ -120,14 +120,14 @@
     padding: 8px 12px;
     border-radius: 14px;
     font-size: 14px;
-    min-height: 35px;
+    min-height: 30px;
   }
 
   .product-card__qty {
     padding: 8px 12px;
     border-radius: 14px;
     font-size: 14px;
-    min-height: 35px;
+    min-height: 30px;
   }
 }
 
